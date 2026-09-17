@@ -2,6 +2,7 @@
 
 from fastapi import APIRouter, Depends, HTTPException, status
 
+from app.dependencies import get_user_repository
 from app.models.user import User, UserCreate
 from app.repositories.user_repository import UserRepository
 from app.services.user_service import UserService
@@ -9,7 +10,9 @@ from app.services.user_service import UserService
 router = APIRouter(prefix="/users", tags=["users"])
 
 
-def get_user_service(repository: UserRepository = Depends()) -> UserService:
+def get_user_service(
+    repository: UserRepository = Depends(get_user_repository),
+) -> UserService:
     return UserService(repository)
 
 

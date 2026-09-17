@@ -2,11 +2,20 @@
 
 from fastapi import APIRouter, Depends, HTTPException, status
 
+from app.dependencies import get_order_repository, get_user_repository
 from app.models.order import Order, OrderCreate
+from app.repositories.order_repository import OrderRepository
+from app.repositories.user_repository import UserRepository
 from app.services.order_service import OrderService
-from app.main import get_order_service
 
 router = APIRouter(prefix="/orders", tags=["orders"])
+
+
+def get_order_service(
+    orders: OrderRepository = Depends(get_order_repository),
+    users: UserRepository = Depends(get_user_repository),
+) -> OrderService:
+    return OrderService(orders, users)
 
 
 @router.post("", response_model=Order, status_code=status.HTTP_201_CREATED)
