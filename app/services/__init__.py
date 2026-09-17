@@ -1,1 +1,1 @@
-"""Business service modules."""
+"""Service package."""

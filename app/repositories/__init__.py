@@ -1,1 +1,1 @@
-"""Data-access repository modules."""
+"""Repository package."""
