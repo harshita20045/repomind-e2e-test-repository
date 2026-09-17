@@ -11,7 +11,7 @@ class OrderItem(BaseModel):
 
 
 class OrderCreate(BaseModel):
-    user_id: int = Field(gt=0)
+    
     items: list[OrderItem] = Field(min_length=1)
 
 
