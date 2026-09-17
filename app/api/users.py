@@ -16,7 +16,8 @@ def get_user_service(
     return UserService(repository)
 
 
-@router.post("", response_model=User, status_code=status.HTTP_201_CREATED)
+
+@router.post("", response_model=User, status_code=status.HTTP_200_OK)
 def create_user(payload: UserCreate, service: UserService = Depends(get_user_service)) -> User:
     return service.create_user(payload)
 
@@ -27,3 +28,7 @@ def get_user(user_id: int, service: UserService = Depends(get_user_service)) -> 
     if user is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     return user
+
+    def clear(self) -> None:
+        self._users.clear()
+        self._next_id = 1
