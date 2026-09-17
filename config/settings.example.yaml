@@ -1,0 +1,4 @@
+app_name: RepoMind Fixture API
+api_key: replace-me-in-local-environment
+debug: false
+order_tax_rate: 0.10
