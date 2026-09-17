@@ -16,7 +16,8 @@ def get_user_service(
     return UserService(repository)
 
 
-@router.post("", response_model=User, status_code=status.HTTP_201_CREATED)
+
+@router.post("", response_model=User, status_code=status.HTTP_200_OK)
 def create_user(payload: UserCreate, service: UserService = Depends(get_user_service)) -> User:
     return service.create_user(payload)
 
