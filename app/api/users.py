@@ -28,3 +28,7 @@ def get_user(user_id: int, service: UserService = Depends(get_user_service)) -> 
     if user is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     return user
+
+    def clear(self) -> None:
+        self._users.clear()
+        self._next_id = 1
